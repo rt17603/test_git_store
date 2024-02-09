@@ -1,0 +1,10 @@
+on:
+  push:
+  workflow_call:
+
+jobs:
+  check_tag:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    steps:
+      - name: Find tag
+        run: echo "${GITHUB_REF#refs/tags/}"
